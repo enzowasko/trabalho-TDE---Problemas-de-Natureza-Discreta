@@ -1,0 +1,40 @@
+#Para obter os pontos relativos a este trabalho, você deverá criar um programa, utilizando a
+#linguagem Python, C, ou C++. Este programa, quando executado, irá apresentar os resultados de
+#operações que serão realizadas entre dois conjuntos de dados.
+#Enzo Wasko Amorim
+
+
+with open('arq1EnzoWasko.txt', 'r') as texto:
+  linhas=texto.readlines()
+
+total_operacoes= int(linhas[0].strip())
+resultado=[]
+
+l=0
+while l < total_operacoes:
+  cont=1+l*3
+  cod_operacao=linhas[cont].strip()
+  conjunto1=set(linhas[cont+1].strip().split(', '))
+  conjunto2=set(linhas[cont+2].strip().split(', '))
+
+  if cod_operacao == 'U':
+    resultadofinal= conjunto1.union(conjunto2)
+    resposta=f"União: conjunto 1 {conjunto1}, conjunto 2 {conjunto2}. Resultado:{resultadofinal}"
+
+  elif cod_operacao == 'I':
+    resultadofinal= conjunto1.intersection(conjunto2)
+    resposta=f"Interseção: conjunto 1 {conjunto1}, conjunto 2 {conjunto2}. Resultado:{resultadofinal}"
+
+  elif cod_operacao == 'D':
+    resultadofinal= conjunto1.difference(conjunto2)
+    resposta=f"Diferença: conjunto 1 {conjunto1}, conjunto 2 {conjunto2}. Resultado:{resultadofinal}"
+
+  elif cod_operacao == 'C':
+    resultadofinal={(a ,b) for a in conjunto1 for b in conjunto2}
+    resposta=f"Produto Cartesiano: conjunto 1 {conjunto1}, conjunto 2 {conjunto2}. Resultado:{resultadofinal}"
+
+  resultado.append(resposta)
+  l += 1
+
+for resultadofinal in resultado:
+  print(resultadofinal)
